@@ -1,9 +1,11 @@
 import io
+import re
 
 class WordsFinder:
     def __init__(self, *file_names):
         self.file_names = file_names
         #print(self.file_names)
+
 
     def get_all_words(self):
         all_words = {}
@@ -12,6 +14,9 @@ class WordsFinder:
             #print(i)
             with open(i, encoding='utf-8') as file:
                 for line in file:
+                    punctuation = r'[,.!?;:"\(\)\[\]\{\}\<\>\/\ - ]'
+                    line = re.sub(punctuation, ' ', line)
+                    #print(line)
                     for line2 in line.lower().split():
                         #print(line2)
                         line3.append(line2)
