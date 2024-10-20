@@ -22,11 +22,31 @@ class WordsFinder:
                         line3.append(line2)
                         #line3.append(line2.split('\n'))
             #print(line3)
-            all_words = {i: line3}
-            print(all_words)
+            all_words.update({i: line3})
+            line3 = []
+        return all_words
 
+    def find(self, word):
+        all_words = self.get_all_words()
+        for k, find_words in all_words.items():
+            #print(find_words[0])
+            for i in range(len(find_words)):
+                #print(find_words[i])
+                if find_words[i] == word.lower():
+                    return {k: i+1}
+
+    def count(self, word):
+        count_word = 0
+        all_words = self.get_all_words()
+        for k, find_words in all_words.items():
+            for i in find_words:
+                if i == word.lower():
+                    count_word += 1
+        return {k: count_word}
 
 
 
 finder2 = WordsFinder('test.txt')
-finder2.get_all_words()
+print(finder2.get_all_words())
+print(finder2.find('TEXT'))
+print(finder2.count('teXT'))
