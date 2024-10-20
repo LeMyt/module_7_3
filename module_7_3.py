@@ -11,17 +11,12 @@ class WordsFinder:
         all_words = {}
         line3 = []
         for i in self.file_names:
-            #print(i)
             with open(i, encoding='utf-8') as file:
                 for line in file:
                     punctuation = r'[,.!?;:"\(\)\[\]\{\}\<\>\/\ - ]'
                     line = re.sub(punctuation, ' ', line)
-                    #print(line)
                     for line2 in line.lower().split():
-                        #print(line2)
                         line3.append(line2)
-                        #line3.append(line2.split('\n'))
-            #print(line3)
             all_words.update({i: line3})
             line3 = []
         return all_words
@@ -29,9 +24,7 @@ class WordsFinder:
     def find(self, word):
         all_words = self.get_all_words()
         for k, find_words in all_words.items():
-            #print(find_words[0])
             for i in range(len(find_words)):
-                #print(find_words[i])
                 if find_words[i] == word.lower():
                     return {k: i+1}
 
